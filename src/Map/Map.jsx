@@ -262,7 +262,8 @@ export class Mapp extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             //url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
             subdomains="1234"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>'
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  '
+            // &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>
           />
         </Map>
       </div>
