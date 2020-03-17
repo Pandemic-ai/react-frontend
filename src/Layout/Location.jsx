@@ -44,8 +44,8 @@ class Location extends React.Component {
 
   render() {
     const { showNav, status } = this.state;
-    let navCoverStyle = { width: showNav ? "270px" : "0" };
-    let sideNavStyle = { width: showNav ? "270px" : "0" };
+    let navCoverStyle = { width: showNav ? "300px" : "0" };
+    let sideNavStyle = { width: showNav ? "300px" : "0" };
 
     return (
       <React.Fragment>
