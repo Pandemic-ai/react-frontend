@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Bus from "./Bus"
-import Train from "./Train"
-import Flight from "./FLight"
-import Filter from "./Filter"
-import Location from "./Location"
+import Bus from "./Bus";
+import Train from "./Train";
+import Flight from "./FLight";
+import Filter from "./Filter";
+import Location from "./Location";
+import logo from "../Img/Logo.png";
 
 export class Header extends Component {
   render() {
@@ -38,50 +39,56 @@ export class Header extends Component {
                 >
                   <span className="navbar-toggler-icon  "></span>
                 </button> */}
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li>
-                <a
-                  className="nav-link   text-dark"
-                  style={{ marginTop: "10px" }}
-                >
-                  <i class="fa fa-bars"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  className="nav-link   text-dark"
-                  style={{ marginTop: "10px" }}
-                >
-                  <Location sub={this.props.submit} vall={this.props.state} loadd={this.props.load}  />
-                </a>
-              </li>
-              <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
-                 <Bus />
-                </a>
-              </li>
+          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
+          <ul className="navbar-nav mr-auto">
+            <li>
+              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
+                <i class="fa fa-bars"></i>
+              </a>
+            </li>
+            <li>
+              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
+                <Location
+                  sub={this.props.submit}
+                  vall={this.props.state}
+                  loadd={this.props.load}
+                />
+              </a>
+            </li>
+            <li className="nav-item  ">
+              <a className="nav-link   text-dark" href="# ">
+                <Bus />
+              </a>
+            </li>
 
-              <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
-                 <Flight />
-                </a>
-              </li>
-              <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
-                 <Train />
-                </a>
-              </li>
-              <li>
-                <a
-                  className="nav-link   text-dark"
-                  style={{ marginTop: "10px" }}
-                >
-                <Filter />
-                </a>
-              </li>
-            </ul>
-          </div>
+            <li className="nav-item  ">
+              <a className="nav-link   text-dark" href="# ">
+                <Flight />
+              </a>
+            </li>
+            <li className="nav-item  ">
+              <a className="nav-link   text-dark" href="# ">
+                <Train />
+              </a>
+            </li>
+            <li>
+              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
+                <Filter
+                  sub={this.props.submit}
+                  vall={this.props.state}
+                  loadd={this.props.load}
+                />
+              </a>
+            </li>
+          </ul>
+          <ul className="navbar-nav mx-auto" style={{ margin: "0 auto" }}>
+            <img
+              src={logo}
+              alt="Website Logo"
+              style={{ width: " 200px", height: "40px" }}
+            />
+          </ul>
+          {/* </div> */}
         </nav>
       </div>
     );

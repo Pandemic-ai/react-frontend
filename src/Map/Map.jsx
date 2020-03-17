@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { createRef, Component } from "react";
 import {
   Map,
   TileLayer,
   Marker,
-  Popup,
-  CircleMarker,
-  Circle
+  Popup
+  // CircleMarker,
+  // Circle,
+  // FeatureGroup
 } from "react-leaflet";
 import L from "leaflet";
 // import MarkerPopup from "./MarkerPop";
@@ -24,10 +25,14 @@ export class Mapp extends Component {
       date_gte: "",
       date_lte: "",
       location: "",
-      address: ""
+      address: "",
+      bounds: null,
+      center: [35.000074, 104.999927]
     };
-    this.onChange = this.onChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.mapRef = createRef();
+    this.groupRef = createRef();
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleHiddden() {
@@ -67,11 +72,16 @@ export class Mapp extends Component {
     }
   }
 
+  handleClick() {
+    const map = this.mapRef.current.leafletElement;
+    const group = this.groupRef.current.leafletElement;
+    map.fitBounds(group.getBounds());
+  }
 
-  async onChange(e){
-    await this.state({
-      [e.target.name] : e.target.value
-    })
+  async onChange(e) {
+    await this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   async componentDidMount() {
@@ -94,9 +104,16 @@ export class Mapp extends Component {
       console.log(err);
     }
 
-    let mapInst = this.refs.map.leafletElement.getBounds
+    let mapInst = this.refs.map.leafletElement.fitBounds;
     console.log(mapInst);
   }
+
+  // centerUpdated(center) {
+  //   this.center = center;
+  // }
+  // boundsUpdated(bounds) {
+  //   this.bounds = bounds;
+  // }
 
   render() {
     const { map } = this.state;
@@ -109,14 +126,22 @@ export class Mapp extends Component {
     });
     return (
       <div>
-        <Header state={this.state} load={this.onChange}  submit={this.handleSubmit}/>
+        <Header
+          state={this.state}
+          load={this.onChange}
+          submit={this.handleSubmit}
+        />
         <Map
           center={[51.9194, 19.1451]}
           style={{ height: "100vh", width: "auto" }}
-          zoom={4}
+          zoom={6}
+          // ref="map"
           ref="map"
+          // bounds={this.boundsUpdated.bind(this)}
+          // boundsOptions={{padding: [50, 50]}}
           bounceAtZoomLimits={true}
           maxBoundsViscosity={0.95}
+          // onmouseover={this.handleClick.bind(this)}
           maxBounds={[
             [-180, -90],
             [180, 90]
@@ -164,10 +189,17 @@ export class Mapp extends Component {
                   )}
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Place : {c.location}
+                      {c.location && <span> Place : {c.location} </span>}
                     </Typography>
 
                     <h6>Address : {c.address}</h6>
+                    <p className="text-dark" style={{ marginTop: "-5px" }}>
+                      {c.info && (
+                        <span>
+                          <strong> Info</strong>: {c.info}{" "}
+                        </span>
+                      )}
+                    </p>
 
                     <p
                       color="textSecondary text-secondary"
@@ -176,9 +208,19 @@ export class Mapp extends Component {
                     >
                       PlaceType : {c.place_type}
                       <br></br>
-                      Start Hour : {c.start_hour}{" "}
-                      {c.start_hour > "12" ? "PM" : "AM"} <br></br>
-                      End Hour : {c.end_hour} {c.end_hour > "12" ? "PM" : "AM"}
+                      {c.start_hour && (
+                        <span>
+                          Start Hour : {c.start_hour}{" "}
+                          {c.start_hour > "12" ? "PM" : "AM"}
+                        </span>
+                      )}
+                      <br></br>
+                      {c.end_hour && (
+                        <span>
+                          End Hour : {c.end_hour}{" "}
+                          {c.end_hour > "12" ? "PM" : "AM"}
+                        </span>
+                      )}
                     </p>
                   </CardContent>
                 </Card>
@@ -216,7 +258,7 @@ export class Mapp extends Component {
 
           <TileLayer
             noWrap={true}
-             url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
+            url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
             //url ="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}{r}.png"
             subdomains="1234"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>'

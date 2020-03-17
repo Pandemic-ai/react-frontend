@@ -1,19 +1,15 @@
 import React from "react";
 import "./SideNav.css";
 import { withRouter } from "react-router-dom";
-import "./SideNav.css"
-
-
-
+import "./SideNav.css";
 
 class Bus extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNav: false,
-      status: []
+      showNav: false
     };
-  } 
+  }
 
   openNavClick = e => {
     e.preventDefault();
@@ -48,13 +44,13 @@ class Bus extends React.Component {
 
   render() {
     const { showNav, status } = this.state;
-    let navCoverStyle = { width: showNav ? "100%" : "0" };
+    let navCoverStyle = { width: showNav ? "270px" : "0" };
     let sideNavStyle = { width: showNav ? "270px" : "0" };
 
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-            <i className="fa fa-bus"></i>
+          <i className="fa fa-bus"></i>
         </span>
         <div
           onClick={this.navCoverClick}
@@ -66,99 +62,11 @@ class Bus extends React.Component {
           <a href="# " onClick={this.closeNavClick} class="close-nav">
             &times;
           </a>
-          <p
-            className="navbar-brand text-dark text-capitalize "
-            style={{ paddingLeft: "30px" }}
-          >
-           
-          </p>
+          <h1 className="text-dark text-center  h1 ">BusView</h1>
+          <h5 className="text-dark text-center   ">
+            Known Bus related to <strong>COVID-19</strong> cases
+          </h5>
           <hr></hr>
-          <a href="/user/Dashboard/">
-            <span>
-              <i className="fa fa-desktop"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Dashboard
-          </a>
-          <a href="/user/addblog/">
-            <span>
-              <i className="fa fa-plus"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Add Blog
-          </a>
-          <a href="/user/viewprofile/">
-            <span>
-              <i className="fa fa-eye"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; View Profile
-          </a>
-          <a href="/user/editprofile/">
-            <span>
-              <i className="fa fa-pen"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Edit Profile
-          </a>
-
-        
-            <span>
-              <a href="/admin/userlist/">
-                <span>
-                  <i className="fa fa-tasks"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; User List
-              </a>
-
-              <a href="/user/editprofile/">
-                <span>
-                  <i className="fa fa-pen"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; Email List
-              </a>
-
-              <a href="/admin/bloglist/">
-                <span>
-                  <i className="fa fa-pen"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; All Blog
-              </a>
-            </span>
-        
-
-          <a
-            className="dropdown-item  js-scroll-trigger "
-            style={{ color: "#212226" }}
-            href="# "
-           
-          >
-            <span>
-              <i className="fa fa-sign-out"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Logout
-          </a>
-
-          <div className="row">
-            <div className="col-sm-2">
-              {" "}
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-facebook"></i>
-              </a>
-            </div>
-            <div className="col-sm-2">
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-instagram"></i>
-              </a>
-            </div>
-            <div className="col-sm-2">
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
-            <div className="col-sm-2">
-              {" "}
-              <a href=" ">
-                <i className="fab fa-youtube"></i>
-              </a>
-            </div>
-          </div>
         </div>
       </React.Fragment>
     );

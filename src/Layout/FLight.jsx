@@ -1,18 +1,39 @@
 import React from "react";
 import "./SideNav.css";
 import { withRouter } from "react-router-dom";
-import "./SideNav.css"
-
-
+import "./SideNav.css";
+import moment from "moment";
 
 class Flight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showNav: false,
-      status: []
+
+      map: []
     };
-  } 
+  }
+
+  async componentDidMount() {
+    try {
+      await fetch(`https://coronaviva.herokuapp.com/api/1/transport/data/`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+        }
+      })
+        .then(map => map.json())
+        .then(map => {
+          this.setState({
+            map
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   openNavClick = e => {
     e.preventDefault();
@@ -47,13 +68,22 @@ class Flight extends React.Component {
 
   render() {
     const { showNav, status } = this.state;
-    let navCoverStyle = { width: showNav ? "100%" : "0" };
-    let sideNavStyle = { width: showNav ? "270px" : "0" };
+    let navCoverStyle = { width: showNav ? "310px" : "0" };
+    let sideNavStyle = { width: showNav ? "310px" : "0" };
+
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
 
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-         <i className="fa fa-plane"></i>
+          <i className="fa fa-plane"></i>
         </span>
         <div
           onClick={this.navCoverClick}
@@ -65,99 +95,32 @@ class Flight extends React.Component {
           <a href="# " onClick={this.closeNavClick} class="close-nav">
             &times;
           </a>
-          <p
-            className="navbar-brand text-dark text-capitalize "
-            style={{ paddingLeft: "30px" }}
-          >
-        
-          </p>
+          <h1 className="text-dark text-center  h1 ">FlightView</h1>
+          <h5 className="text-dark text-center   ">
+            Known flights related to <strong>COVID-19</strong> cases
+          </h5>
           <hr></hr>
-          <a href="/user/Dashboard/">
-            <span>
-              <i className="fa fa-desktop"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Dashboard
-          </a>
-          <a href="/user/addblog/">
-            <span>
-              <i className="fa fa-plus"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Add Blog
-          </a>
-          <a href="/user/viewprofile/">
-            <span>
-              <i className="fa fa-eye"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; View Profile
-          </a>
-          <a href="/user/editprofile/">
-            <span>
-              <i className="fa fa-pen"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Edit Profile
-          </a>
 
-        
-            <span>
-              <a href="/admin/userlist/">
-                <span>
-                  <i className="fa fa-tasks"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; User List
-              </a>
-
-              <a href="/user/editprofile/">
-                <span>
-                  <i className="fa fa-pen"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; Email List
-              </a>
-
-              <a href="/admin/bloglist/">
-                <span>
-                  <i className="fa fa-pen"></i>{" "}
-                </span>{" "}
-                &nbsp; &nbsp; All Blog
-              </a>
-            </span>
-          
-
-          <a
-            className="dropdown-item  js-scroll-trigger "
-            style={{ color: "#212226" }}
-            href="# "
-            onClick={this.onLogout}
-          >
-            <span>
-              <i className="fa fa-sign-out"></i>{" "}
-            </span>{" "}
-            &nbsp; &nbsp; Logout
-          </a>
-
-          <div className="row">
-            <div className="col-sm-2">
-              {" "}
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-facebook"></i>
-              </a>
+          {this.state.map.map(c => (
+            <div className="text-left box" style={{ marginBottom: "15px" }}>
+              <h5 className="font-weight-bolder">
+                {c.transport_number} - {c.departure_place} To {c.arrival_place}
+              </h5>
+              <h6 style={{ marginTop: "10px" }}>
+                <strong>
+                  {weekday[new Date(c.date).getDay()]} ,
+                  {moment(c.datetime).format("DD-MM-YYYY")}
+                </strong>
+              </h6>
+              <h6 style={{ marginTop: "-3px" }}>
+                Departure : {c.departure_time}{" "}
+                {c.departure_time > "12" ? "PM" : "AM"}{" "}
+              </h6>
+              <h6 style={{ marginTop: "-3px" }}>
+                Arrival : {c.arrival_time} {c.arrival_time > "12" ? "PM" : "AM"}
+              </h6>
             </div>
-            <div className="col-sm-2">
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-instagram"></i>
-              </a>
-            </div>
-            <div className="col-sm-2">
-              <a href=" " style={{ marginRight: "14px" }}>
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
-            <div className="col-sm-2">
-              {" "}
-              <a href=" ">
-                <i className="fab fa-youtube"></i>
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </React.Fragment>
     );

@@ -26,6 +26,11 @@
 .leaflet-container {
   z-index: 1;
 }
+
+.box {
+  box-shadow: 10px -3px 10px -7px rgb(36, 34, 34, 0.8);
+  padding: 10px;
+}
 .don {
   background-color: #545051;
   border-color: #545051;
@@ -34,25 +39,29 @@
 .carrr {
   background-color: #545051;
   width: 400px;
-  height: 300px;
+  height: auto;
+  overflow: scroll;
   /* justify-content: center;
   display: grid;
   align-items: center; */
+  margin-bottom: -30px;
   top: 50%;
-  left : 50%;
+  left: 50%;
   /* transform: translate(-10%, 30%); */
   color: wheat;
 }
 .MuiPaper-root .MuiCard-root {
   background-color: #545051;
   width: 400px;
-  height: 300px;
-  /* justify-content: center;
+  height: auto;
+
+  /* justify-content
+   overflow-y: scroll;: center;
   display: grid;
   align-items: center; */
 }
 .image {
-  height: 140px;
+  height: 100px;
   width: 100%;
 }
 .lodl {
