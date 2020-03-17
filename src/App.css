@@ -1,0 +1,62 @@
+.navbar-nav .nav-item .nav-link {
+  margin: 10px;
+}
+.navbar {
+  height: 40px;
+  /* background: rgb(59, 58, 58); */
+}
+.fa {
+  font-size: 18px;
+  color: black;
+}
+.leaflet-popup-close-button {
+  opacity: 0;
+  transform: translate3d(634px, 356px, 0px);
+  color: transparent;
+  bottom: -7px;
+  left: -46px;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: transparent;
+  color: transparent;
+  box-shadow: none;
+}
+
+.leaflet-container {
+  z-index: 1;
+}
+.don {
+  background-color: #545051;
+  border-color: #545051;
+  float: right;
+}
+.carrr {
+  background-color: #545051;
+  width: 400px;
+  height: 300px;
+  /* justify-content: center;
+  display: grid;
+  align-items: center; */
+  top: 50%;
+  left : 50%;
+  /* transform: translate(-10%, 30%); */
+  color: wheat;
+}
+.MuiPaper-root .MuiCard-root {
+  background-color: #545051;
+  width: 400px;
+  height: 300px;
+  /* justify-content: center;
+  display: grid;
+  align-items: center; */
+}
+.image {
+  height: 140px;
+  width: 100%;
+}
+.lodl {
+  position: relative;
+  top: -10px;
+  opacity: 0.7;
+}
