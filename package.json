@@ -16,6 +16,7 @@
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-apexcharts": "^1.3.6",
+    "react-count-to": "^0.12.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
     "react-leaflet": "^2.6.3",
