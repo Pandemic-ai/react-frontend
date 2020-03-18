@@ -8,31 +8,8 @@ class Flight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNav: false,
-
-      map: []
+      showNav: false
     };
-  }
-
-  async componentDidMount() {
-    try {
-      await fetch(`https://coronaviva.herokuapp.com/api/1/transport/data/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
-        }
-      })
-        .then(map => map.json())
-        .then(map => {
-          this.setState({
-            map
-          });
-        });
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   openNavClick = e => {
@@ -80,6 +57,8 @@ class Flight extends React.Component {
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
 
+    console.log(this.props.load);
+
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
@@ -101,7 +80,7 @@ class Flight extends React.Component {
           </h5>
           <hr></hr>
 
-          {this.state.map.map(c => (
+          {this.props.load.map(c => (
             <div className="text-left box" style={{ marginBottom: "15px" }}>
               <h5 className="font-weight-bolder">
                 {c.transport_number} - {c.departure_place} To {c.arrival_place}

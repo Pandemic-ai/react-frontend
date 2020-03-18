@@ -7,6 +7,35 @@ import Location from "./Location";
 import logo from "../Img/Logo.png";
 
 export class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      map: []
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      await fetch(`https://coronaviva.herokuapp.com/api/1/transport/data/`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+        }
+      })
+        .then(map => map.json())
+        .then(map => {
+          this.setState({
+            map
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     return (
       <div className="container1">
@@ -63,7 +92,7 @@ export class Header extends Component {
 
             <li className="nav-item  ">
               <a className="nav-link   text-dark" href="# ">
-                <Flight />
+                <Flight load={this.state.map} />
               </a>
             </li>
             <li className="nav-item  ">
