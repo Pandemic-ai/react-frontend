@@ -3,10 +3,10 @@ import {
   Map,
   TileLayer,
   Marker,
-  Popup
+  Popup,
   // CircleMarker,
   // Circle,
-  // FeatureGroup
+  FeatureGroup
 } from "react-leaflet";
 import L from "leaflet";
 // import MarkerPopup from "./MarkerPop";
@@ -105,16 +105,11 @@ export class Mapp extends Component {
       console.log(err);
     }
 
-    let mapInst = this.mapRef.current.leafletElement.fitBounds;
-    console.log(mapInst);
+    let mapInst = this.mapRef.current.leafletElement;
+    const group = this.groupRef.current.leafletElement; //get native featureGroup instance
+    mapInst.fitBounds(group.getBounds());
+    // console.log(mapInst);
   }
-
-  // centerUpdated(center) {
-  //   this.center = center;
-  // }
-  // boundsUpdated(bounds) {
-  //   this.bounds = bounds;
-  // }
 
   render() {
     const { map } = this.state;
@@ -136,9 +131,7 @@ export class Mapp extends Component {
           center={[51.9194, 19.1451]}
           style={{ height: "100vh", width: "auto" }}
           zoom={6}
-          // ref="map"
           ref={this.mapRef}
-          // bounds={this.boundsUpdated.bind(this)}
           // boundsOptions={{padding: [50, 50]}}
           bounceAtZoomLimits={true}
           maxBoundsViscosity={0.95}
@@ -150,14 +143,15 @@ export class Mapp extends Component {
           //   bounds={this.boundsUpdated.bind(this)}
           className="map_map margin-zero map-padding"
         >
-          {map.map(c => (
-            <Marker
-              position={[c.latitude, c.longitude]}
-              icon={pointerIcon}
-              onclick={this.toggleHiddden.bind(this)}
-            >
-              <Popup autoPan={false}>
-                {/* <Modal
+          <FeatureGroup ref={this.groupRef}>
+            {map.map(c => (
+              <Marker
+                position={[c.latitude, c.longitude]}
+                icon={pointerIcon}
+                onclick={this.toggleHiddden.bind(this)}
+              >
+                <Popup autoPan={false}>
+                  {/* <Modal
                   //   className={classes.modal}
                   open={this.state.open}
                   //   classes={{ root: classes.root }}
@@ -168,77 +162,78 @@ export class Mapp extends Component {
                     invisible: true
                   }}
                 > */}
-                <Card className="carrr">
-                  {/* <button
+                  <Card className="carrr">
+                    {/* <button
                     className="don btn"
                     onClick={this.toggleHiddden1.bind(this)}
                   >
                     X
                   </button> */}
-                  {c.location === "Israel" ? (
-                    <img
-                      className="image"
-                      src="https://thehill.com/sites/default/files/styles/article_full/public/telaviv_skyline_09202018.jpg?itok=pxhk1Rtl"
-                      alt="Contemplative Reptile"
-                    />
-                  ) : (
-                    <img
-                      className="image"
-                      src="https://www.dwf.law/-/media/DWF/Images/Locations-Assets/Warsaw/Warsaw-700-x-388.ashx"
-                      alt="Contemplative Reptile"
-                    />
-                  )}
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {c.location && <span> Place : {c.location} </span>}
-                    </Typography>
+                    {c.location === "Israel" ? (
+                      <img
+                        className="image"
+                        src="https://thehill.com/sites/default/files/styles/article_full/public/telaviv_skyline_09202018.jpg?itok=pxhk1Rtl"
+                        alt="Contemplative Reptile"
+                      />
+                    ) : (
+                      <img
+                        className="image"
+                        src="https://www.dwf.law/-/media/DWF/Images/Locations-Assets/Warsaw/Warsaw-700-x-388.ashx"
+                        alt="Contemplative Reptile"
+                      />
+                    )}
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {c.location && <span> Place : {c.location} </span>}
+                      </Typography>
 
-                    <h6>Address : {c.address}</h6>
-                    <p className="text-dark" style={{ marginTop: "-5px" }}>
-                      {c.info && (
-                        <span>
-                          <strong> Info</strong>: {c.info}{" "}
-                        </span>
-                      )}
-                    </p>
+                      <h6>Address : {c.address}</h6>
+                      <p className="text-dark" style={{ marginTop: "-5px" }}>
+                        {c.info && (
+                          <span>
+                            <strong> Info</strong>: {c.info}{" "}
+                          </span>
+                        )}
+                      </p>
 
-                    <p
-                      color="textSecondary text-secondary"
-                      component="p"
-                      className="lodl"
-                    >
-                      PlaceType : {c.place_type}
-                      <br></br>
-                      {c.start_hour && (
-                        <span>
-                          Start Hour : {c.start_hour}{" "}
-                          {c.start_hour > "12" ? "PM" : "AM"}
-                        </span>
-                      )}
-                      <br></br>
-                      {c.end_hour && (
-                        <span>
-                          End Hour : {c.end_hour}{" "}
-                          {c.end_hour > "12" ? "PM" : "AM"}
-                        </span>
-                      )}
-                    </p>
-                  </CardContent>
-                </Card>
-                {/* </Modal> */}
-              </Popup>
-              {/* <MarkerPopup
+                      <p
+                        color="textSecondary text-secondary"
+                        component="p"
+                        className="lodl"
+                      >
+                        PlaceType : {c.place_type}
+                        <br></br>
+                        {c.start_hour && (
+                          <span>
+                            Start Hour : {c.start_hour}{" "}
+                            {c.start_hour > "12" ? "PM" : "AM"}
+                          </span>
+                        )}
+                        <br></br>
+                        {c.end_hour && (
+                          <span>
+                            End Hour : {c.end_hour}{" "}
+                            {c.end_hour > "12" ? "PM" : "AM"}
+                          </span>
+                        )}
+                      </p>
+                    </CardContent>
+                  </Card>
+                  {/* </Modal> */}
+                </Popup>
+                {/* <MarkerPopup
                 open={this.state.open}
                 detail={c}
                 setOpen={this.toggleHiddden1.bind(this)}
               /> */}
-              {/* <Circle
+                {/* <Circle
                 center={[c.latitude, c.longitude]}
                 fillColor="red"
                 radius={2000}
               /> */}
-            </Marker>
-          ))}
+              </Marker>
+            ))}
+          </FeatureGroup>
           {/* {map.map(c => (
             <CircleMarker
               center={[c.latitude, c.longitude]}
