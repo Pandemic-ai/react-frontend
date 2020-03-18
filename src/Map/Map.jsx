@@ -105,7 +105,7 @@ export class Mapp extends Component {
       console.log(err);
     }
 
-    let mapInst = this.refs.map.leafletElement.fitBounds;
+    let mapInst = this.mapRef.current.leafletElement.fitBounds;
     console.log(mapInst);
   }
 
@@ -137,7 +137,7 @@ export class Mapp extends Component {
           style={{ height: "100vh", width: "auto" }}
           zoom={6}
           // ref="map"
-          ref="map"
+          ref={this.mapRef}
           // bounds={this.boundsUpdated.bind(this)}
           // boundsOptions={{padding: [50, 50]}}
           bounceAtZoomLimits={true}
@@ -259,10 +259,10 @@ export class Mapp extends Component {
 
           <TileLayer
             // noWrap={true}
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
+            // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
             //url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             //url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-            // url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  '
             // &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>
           />

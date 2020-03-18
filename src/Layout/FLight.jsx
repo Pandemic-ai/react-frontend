@@ -57,7 +57,7 @@ class Flight extends React.Component {
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
 
-    console.log(this.props.load);
+    const flight = this.props.load.filter(c => c.transport_mode === "Flight");
 
     return (
       <React.Fragment>
@@ -80,10 +80,11 @@ class Flight extends React.Component {
           </h5>
           <hr></hr>
 
-          {this.props.load.map(c => (
+          {flight.map(c => (
             <div className="text-left box" style={{ marginBottom: "15px" }}>
               <h5 className="font-weight-bolder">
-                {c.transport_number} - {c.departure_place} To {c.arrival_place}
+                {c.transport_number} - {c.departure_country} (
+                {c.departure_place}) To {c.arrival_country} ({c.arrival_place})
               </h5>
               <h6 style={{ marginTop: "10px" }}>
                 <strong>

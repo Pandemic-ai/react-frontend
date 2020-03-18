@@ -4,6 +4,7 @@ import Train from "./Train";
 import Flight from "./FLight";
 import Filter from "./Filter";
 import Location from "./Location";
+import Help from "./Help";
 import logo from "../Img/Logo.png";
 
 export class Header extends Component {
@@ -56,68 +57,89 @@ export class Header extends Component {
                     style={{ width: "200px", height: "60px" }}
                   />
                 </a> */}
-          {/* <button
-                  className="navbar-toggler font-weight-bold text-white  "
-                  style={{ background: "#38d39f", padding: "2px", width: "70px" }}
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+          <button
+            className="navbar-toggler font-weight-bold text-white  "
+            style={{ background: "#38d39f", padding: "2px", width: "70px" }}
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon  "></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "10px" }}
                 >
-                  <span className="navbar-toggler-icon  "></span>
-                </button> */}
-          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
-          <ul className="navbar-nav mr-auto">
-            <li>
-              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
-                <i class="fa fa-bars"></i>
-              </a>
-            </li>
-            <li>
-              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
-                <Location
-                  sub={this.props.submit}
-                  vall={this.props.state}
-                  loadd={this.props.load}
-                />
-              </a>
-            </li>
-            <li className="nav-item  ">
-              <a className="nav-link   text-dark" href="# ">
-                <Bus />
-              </a>
-            </li>
+                  <Help />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "10px" }}
+                >
+                  <Location
+                    sub={this.props.submit}
+                    vall={this.props.state}
+                    loadd={this.props.load}
+                  />
+                </a>
+              </li>
+              <li className="nav-item  ">
+                <a className="nav-link   text-dark" href="# ">
+                  <Bus load={this.state.map} />
+                </a>
+              </li>
 
-            <li className="nav-item  ">
-              <a className="nav-link   text-dark" href="# ">
-                <Flight load={this.state.map} />
-              </a>
-            </li>
-            <li className="nav-item  ">
-              <a className="nav-link   text-dark" href="# ">
-                <Train />
-              </a>
-            </li>
-            <li>
-              <a className="nav-link   text-dark" style={{ marginTop: "10px" }}>
-                <Filter
-                  sub={this.props.submit}
-                  vall={this.props.state}
-                  loadd={this.props.load}
-                />
-              </a>
-            </li>
-          </ul>
-          <ul className="navbar-nav mx-auto" style={{ margin: "0 auto" }}>
-            <img
-              src={logo}
-              alt="Website Logo"
-              style={{ width: " 200px", height: "40px" }}
-            />
-          </ul>
-          {/* </div> */}
+              <li className="nav-item  ">
+                <a className="nav-link   text-dark" href="# ">
+                  <Flight load={this.state.map} />
+                </a>
+              </li>
+              <li className="nav-item  ">
+                <a className="nav-link   text-dark" href="# ">
+                  <Train load={this.state.map} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "10px" }}
+                >
+                  <Filter
+                    sub={this.props.submit}
+                    vall={this.props.state}
+                    loadd={this.props.load}
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "10px" }}
+                >
+                  <i className="fa fa-warning"></i>
+                </a>
+              </li>
+            </ul>
+            <ul className="navbar-nav mx-auto" style={{ margin: "0 auto" }}>
+              <img
+                src={logo}
+                alt="Website Logo"
+                style={{ width: " 200px", height: "40px" }}
+              />
+            </ul>
+          </div>
         </nav>
       </div>
     );
