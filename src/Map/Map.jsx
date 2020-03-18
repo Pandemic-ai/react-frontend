@@ -258,12 +258,11 @@ export class Mapp extends Component {
           ))} */}
 
           <TileLayer
-            noWrap={true}
-            //url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
+            // noWrap={true}
+            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
             //url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             //url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            subdomains="1234"
+            // url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  '
             // &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>
           />
