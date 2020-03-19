@@ -42,6 +42,16 @@ class Location extends React.Component {
     }
   };
 
+  componentDidMount() {
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    };
+  }
+
   render() {
     const { showNav, status } = this.state;
     let navCoverStyle = { width: showNav ? "300px" : "0" };
@@ -62,14 +72,14 @@ class Location extends React.Component {
           <a href="# " onClick={this.closeNavClick} class="close-nav">
             &times;
           </a>
-          <h1 className="text-dark text-center  h1 ">Area View</h1>
-          <hr></hr>
+          <h1 className="h1 ">Radius</h1>
+
           <form onSubmit={this.props.sub}>
             <div
               className="text-center"
               style={{ width: "90%", margin: "0 auto" }}
             >
-              <div class="form-group">
+              {/* <div class="form-group">
                 <label htmlFor="Start Date" className="float-left">
                   Search by country
                 </label>
@@ -82,24 +92,47 @@ class Location extends React.Component {
                   <option value="Poland">Poland</option>
                   <option value="Israel">Israel</option>
                 </select>
-              </div>
+              </div> */}
 
               <div class="form-group" style={{ marginTop: "15px" }}>
-                <label htmlFor="Start Date" className="float-left">
-                  Search for a place
-                </label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i
+                        className="fa fa-map-marker"
+                        style={{ fontSize: "15px" }}
+                      ></i>
+                    </div>
+                  </div>{" "}
+                  &nbsp;
+                  <input
+                    type="text"
+                    style={{ border: "1px solid yellow", height: "40px" }}
+                    name="address"
+                    onChange={this.props.loadd}
+                    className="form-control mr-sm-2 differt"
+                    placeholder="Point of intrest"
+                  />
+                </div>
+              </div>
+
+              <div class="slidecontainer">
+                <p className="text-left text-white">
+                  Range : <span id="demo"></span> km
+                </p>
                 <input
-                  type="text"
-                  name="address"
-                  onChange={this.props.loadd}
-                  className="form-control"
-                  placeholder="Point of intrest"
+                  type="range"
+                  min="1"
+                  max="100"
+                  value="50"
+                  class="slider"
+                  id="myRange"
                 />
               </div>
 
               <div className="button">
-                <button className="btn btn-info btn-block font-weight-bolder ">
-                  Search{" "}
+                <button className="btn btn-apply btn-block font-weight-bolder ">
+                  SEARCH
                 </button>
               </div>
             </div>

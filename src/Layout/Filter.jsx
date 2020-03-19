@@ -48,7 +48,7 @@ class Filter extends React.Component {
       width: showNav ? "300px" : "0",
       marginLeft: showNav ? "270px" : "0"
     };
-    let sideNavStyle = { width: showNav ? "300px" : "0" };
+    let sideNavStyle = { width: showNav ? "340px" : "0" };
 
     return (
       <React.Fragment>
@@ -65,126 +65,155 @@ class Filter extends React.Component {
           <a href="# " onClick={this.closeNavClick} class="close-nav">
             &times;
           </a>
-          <h1 className="text-dark text-center  h1 ">Filterview</h1>
-          <hr></hr>
-          <form onSubmit={this.props.sub}>
-            <div
-              className="text-center"
-              style={{ width: "70%", margin: "0 auto" }}
-            >
-              <div class="form-group">
-                <label htmlFor="Start Date" className="float-left">
-                  {" "}
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  onChange={this.props.loadd}
-                  name="date_gte"
-                  className="form-control"
-                />
-              </div>
-              <label htmlFor="Start Date" className="float-left">
-                {" "}
-                End Date
-              </label>
-              <div class="form-group">
-                {" "}
-                <input
-                  type="date"
-                  onChange={this.props.loadd}
-                  name="date_lte"
-                  className="form-control"
-                />{" "}
+          <h1 className="h1 ">Filter Map</h1>
+
+          <div
+            className="form-section"
+            style={{ margin: "0 auto", width: "90%" }}
+          >
+            <form onSubmit={this.props.sub} style={{ marginTop: "10px" }}>
+              <div className="row">
+                <div className="col-md-6">
+                  <label htmlFor="form">Date</label>
+                  <input
+                    type="date"
+                    onChange={this.props.loadd}
+                    name="date_gte"
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label htmlFor="form">.</label>
+                  <input
+                    type="date"
+                    onChange={this.props.loadd}
+                    name="date_lte"
+                    className="form-control"
+                  />
+                </div>
               </div>
 
-              <div className="button">
-                <button className="btn btn-info btn-block font-weight-bolder ">
-                  Search{" "}
-                </button>
+              <div className="row">
+                <div className="col-md-6">
+                  <button className="btn btn-apply btn-block">APPLY</button>
+                </div>
+                <div className="col-md-6">
+                  <button className="btn btn-rest btn-block">RESET</button>
+                </div>
               </div>
 
-              <div class="row text-left " style={{ marginTop: "20px" }}>
-                <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="exposure_points_control"
-                      defaultChecked
-                    />
-                    <label
-                      class="custom-control-label"
-                      for="exposure_points_control"
-                    >
-                      Exposure point
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="bus_rides_control"
-                      defaultChecked
-                    />
-                    <label class="custom-control-label" for="bus_rides_control">
-                      Bus ride
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="train_rides_control"
-                      defaultChecked
-                    />
-                    <label
-                      class="custom-control-label"
-                      for="train_rides_control"
-                    >
-                      Train ride
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="tram_rides_control"
-                      defaultChecked
-                    />
-                    <label
-                      class="custom-control-label"
-                      for="tram_rides_control"
-                    >
-                      Tram ride
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="subway_rides_control"
-                      checked
-                    />
-                    <label
-                      class="custom-control-label"
-                      for="subway_ride_control"
-                    >
-                      Subway ride
-                    </label>
+              <div class="  " style={{ marginTop: "30px" }}>
+                <div class="">
+                  <div class="custom-control">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p class="text-white">Exposure point</p>
+                      </div>
+                      <div className="col-md-4" style={{ marginTop: "-5px" }}>
+                        <i
+                          className="fa fa-map-marker"
+                          style={{ marginLeft: "-12px" }}
+                        ></i>
+                      </div>
+                      <div className="col-md-2">
+                        {" "}
+                        <input
+                          defaultChecked
+                          type="checkbox"
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p class="text-white">Bus Route</p>
+                      </div>
+                      <div className="col-md-4" style={{ marginTop: "-5px" }}>
+                        <i
+                          class="fas fa-dot-circle text-warning"
+                          style={{ fontSize: "9px" }}
+                        ></i>
+                      </div>
+                      <div className="col-md-2">
+                        {" "}
+                        <input
+                          defaultChecked
+                          type="checkbox"
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p class="text-white">Tram Route</p>
+                      </div>
+                      <div className="col-md-4" style={{ marginTop: "-5px" }}>
+                        <i
+                          class="fas fa-dot-circle text-info"
+                          style={{ fontSize: "9px" }}
+                        ></i>
+                      </div>
+                      <div className="col-md-2">
+                        {" "}
+                        <input
+                          type="checkbox"
+                          defaultChecked
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p class="text-white">Subway Route</p>
+                      </div>
+                      <div className="col-md-4" style={{ marginTop: "-5px" }}>
+                        <i
+                          class="fas fa-dot-circle text-danger"
+                          style={{ fontSize: "9px" }}
+                        ></i>
+                      </div>
+                      <div className="col-md-2">
+                        {" "}
+                        <input
+                          defaultChecked
+                          type="checkbox"
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p class="text-white">Train Route</p>
+                      </div>
+                      <div className="col-md-4" style={{ marginTop: "-5px" }}>
+                        <i
+                          class="fas fa-dot-circle text-success"
+                          style={{ fontSize: "9px" }}
+                        ></i>
+                      </div>
+                      <div className="col-md-2">
+                        {" "}
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </React.Fragment>
     );

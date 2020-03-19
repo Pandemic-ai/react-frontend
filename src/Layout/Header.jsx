@@ -40,7 +40,7 @@ export class Header extends Component {
   render() {
     return (
       <div className="container1">
-        <nav className="navbar navbar-expand-lg navbar-dark  fixed top-header">
+        <nav className="navbar navbar-expand-lg navbar-dark  fixed top-header bg-dark">
           {/* <a
                   className="navbar-brand logo_text font-weight-bolder"
                   href="/dashboard/"
@@ -94,18 +94,30 @@ export class Header extends Component {
                 </a>
               </li>
               <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
+                <a
+                  className="nav-link   text-dark"
+                  href="# "
+                  style={{ marginTop: "10px" }}
+                >
                   <Bus load={this.state.map} />
                 </a>
               </li>
 
               <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
+                <a
+                  className="nav-link   text-dark"
+                  href="# "
+                  style={{ marginTop: "10px" }}
+                >
                   <Flight load={this.state.map} />
                 </a>
               </li>
               <li className="nav-item  ">
-                <a className="nav-link   text-dark" href="# ">
+                <a
+                  className="nav-link   text-dark"
+                  href="# "
+                  style={{ marginTop: "10px" }}
+                >
                   <Train load={this.state.map} />
                 </a>
               </li>
@@ -122,7 +134,7 @@ export class Header extends Component {
                   />
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="# "
                   className="nav-link   text-dark"
@@ -130,14 +142,58 @@ export class Header extends Component {
                 >
                   <i className="fa fa-warning"></i>
                 </a>
-              </li>
+              </li> */}
             </ul>
-            <ul className="navbar-nav mx-auto" style={{ margin: "0 auto" }}>
-              <img
-                src={logo}
-                alt="Website Logo"
-                style={{ width: " 200px", height: "40px" }}
-              />
+
+            <ul className="navbar-nav mx-auto">
+              <p className="text-white">Logo</p>
+            </ul>
+
+            <ul className="navbar-nav float-right">
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-white font-weight-bold"
+                  style={{ marginTop: "0px" }}
+                >
+                  ABOUT
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-white font-weight-bold"
+                  style={{ marginTop: "0px" }}
+                >
+                  <select
+                    name="country"
+                    className="form-control minimal"
+                    style={{
+                      width: "120px",
+                      marginTop: "-12px",
+                      borderRadius: "4px"
+                    }}
+                  >
+                    <option value="" selected hidden disabled>
+                      Country
+                    </option>
+                    <option>Poland</option>
+                    <option>India</option>
+                    <option>French</option>
+                  </select>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-white font-weight-bold"
+                  style={{ marginTop: "0px" }}
+                >
+                  Logo
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

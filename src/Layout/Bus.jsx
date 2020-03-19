@@ -45,8 +45,8 @@ class Bus extends React.Component {
 
   render() {
     const { showNav, status } = this.state;
-    let navCoverStyle = { width: showNav ? "310px" : "0" };
-    let sideNavStyle = { width: showNav ? "310px" : "0" };
+    let navCoverStyle = { width: showNav ? "340px" : "0" };
+    let sideNavStyle = { width: showNav ? "340px" : "0" };
 
     var weekday = new Array(7);
     weekday[0] = "Sunday";
@@ -77,33 +77,91 @@ class Bus extends React.Component {
           <a href="# " onClick={this.closeNavClick} class="close-nav">
             &times;
           </a>
-          <h1 className="text-dark text-center  h1 ">BusView</h1>
-          <h5 className="text-dark text-center   ">
-            Known Bus related to <strong>COVID-19</strong> cases
-          </h5>
-          <hr></hr>
+          <h1 className="h1 ">Bus trips</h1>
 
-          {bus.map(c => (
-            <div className="text-left box" style={{ marginBottom: "15px" }}>
-              <h5 className="font-weight-bolder">
-                {c.transport_number} - {c.departure_country} (
-                {c.departure_place}) To {c.arrival_country} ({c.arrival_place})
-              </h5>
-              <h6 style={{ marginTop: "10px" }}>
-                <strong>
-                  {weekday[new Date(c.date).getDay()]} ,
-                  {moment(c.datetime).format("DD-MM-YYYY")}
-                </strong>
-              </h6>
-              <h6 style={{ marginTop: "-3px" }}>
-                Departure : {c.departure_time}{" "}
-                {c.departure_time > "12" ? "PM" : "AM"}{" "}
-              </h6>
-              <h6 style={{ marginTop: "-3px" }}>
-                Arrival : {c.arrival_time} {c.arrival_time > "12" ? "PM" : "AM"}
-              </h6>
-            </div>
-          ))}
+          <div
+            className="form-section"
+            style={{ margin: "0 auto", width: "85%" }}
+          >
+            <form>
+              <div className="row">
+                <div className="col-md-6">
+                  <label htmlFor="form">Date</label>
+                  <input className="form-control" name="date_gte" type="date" />
+
+                  <label htmlFor="form" style={{ marginTop: "15px" }}>
+                    From
+                  </label>
+                  <input
+                    className="form-control"
+                    name="departure"
+                    type="text"
+                    placeholder="Choose Place"
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label htmlFor="form"></label>
+                  <input
+                    style={{ marginTop: "8px" }}
+                    className="form-control"
+                    name="date_lte"
+                    type="date"
+                  />
+
+                  <label htmlFor="form" style={{ marginTop: "15px" }}>
+                    To
+                  </label>
+                  <input
+                    className="form-control"
+                    name="arrival"
+                    type="text"
+                    placeholder="Choose Place"
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <button className="btn btn-apply btn-block">APPLY</button>
+                </div>
+                <div className="col-md-6">
+                  <button className="btn btn-rest btn-block">RESET</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="flight-box" style={{ marginTop: "20px" }}>
+            {bus.map(c => (
+              <div
+                className="text-left "
+                style={{
+                  marginBottom: "15px",
+
+                  margin: "0 auto",
+                  width: "85%"
+                }}
+              >
+                <h5 className="font-weight-bolder">
+                  {c.departure_country} ({c.departure_place}) To{" "}
+                  {c.arrival_country} ({c.arrival_place})
+                </h5>
+                <h6 style={{ marginTop: "7px" }}>
+                  <strong>
+                    {weekday[new Date(c.date).getDay()]} ,
+                    {moment(c.datetime).format("DD-MM-YYYY")}
+                  </strong>
+                </h6>
+                <h6 style={{ marginTop: "-3px" }}>
+                  {c.departure_time} {c.departure_time > "12" ? "PM" : "AM"}{" "}
+                  {" To  "} {c.arrival_time}{" "}
+                  {c.arrival_time > "12" ? "PM" : "AM"}
+                </h6>
+
+                <hr style={{ borderWidth: "2px", borderColor: "yellow" }}></hr>
+              </div>
+            ))}
+          </div>
         </div>
       </React.Fragment>
     );
