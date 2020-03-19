@@ -8,6 +8,7 @@ import {
   FeatureGroup
 } from "react-leaflet";
 import CountTo from "react-count-to";
+import axios from "axios";
 
 class Global extends Component {
   constructor(props) {
@@ -22,25 +23,16 @@ class Global extends Component {
   }
 
   async componentDidMount() {
-    const res = await fetch(`https://api.the2019ncov.com/api/cases`, {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-      }
-    });
+    const res = await fetch(`https://api.the2019ncov.com/api/cases`);
     const stats = await res.json();
     this.setState({
       stats,
       dataa: stats.data
     });
 
-    let mapInst = this.mapRef.current.leafletElement;
-    const group = this.groupRef.current.leafletElement; //get native featureGroup instance
-    mapInst.fitBounds(group.getBounds());
+    // let mapInst = this.mapRef.current.leafletElement;
+    // const group = this.groupRef.current.leafletElement; //get native featureGroup instance
+    // mapInst.fitBounds(group.getBounds());
   }
 
   // locations = () => {
@@ -81,8 +73,8 @@ class Global extends Component {
         <Map
           center={[20.5937, 78.9629]}
           style={{ height: "100vh", width: "100%" }}
-          zoom={4}
-          ref={this.mapRef}
+          zoom={2}
+          // ref={this.mapRef}
           className="map_map margin-zero map-padding"
         >
           {/* <Marker position={[51.9194, 19.1451]} markerCluster={true}>

@@ -26,6 +26,7 @@
     "sweetalert2": "^9.10.0",
     "universal-cookie": "^4.0.3"
   },
+  "proxy": "https://the2019ncov.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
