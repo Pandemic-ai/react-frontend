@@ -116,9 +116,9 @@ export class Mapp extends Component {
 
     const pointerIcon = new L.Icon({
       iconUrl:
-        "https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/map-marker-icon.png",
-      iconAnchor: [25, 40],
-      iconSize: [50, 50]
+        "https://www.e-muzeum.eu/new/markery/google-maps-marker-for-residencelamontagne-hi.png",
+      iconAnchor: [20, 40],
+      iconSize: [40, 50]
     });
     return (
       <div>
@@ -132,15 +132,12 @@ export class Mapp extends Component {
           style={{ height: "100vh", width: "auto" }}
           zoom={6}
           ref={this.mapRef}
-          // boundsOptions={{padding: [50, 50]}}
           bounceAtZoomLimits={true}
           maxBoundsViscosity={0.95}
-          // onmouseover={this.handleClick.bind(this)}
           maxBounds={[
             [-180, -90],
             [180, 90]
           ]}
-          //   bounds={this.boundsUpdated.bind(this)}
           className="map_map margin-zero map-padding"
         >
           <FeatureGroup ref={this.groupRef}>
@@ -151,17 +148,6 @@ export class Mapp extends Component {
                 onclick={this.toggleHiddden.bind(this)}
               >
                 <Popup autoPan={false}>
-                  {/* <Modal
-                  //   className={classes.modal}
-                  open={this.state.open}
-                  //   classes={{ root: classes.root }}
-                  onClose={this.toggleHiddden1.bind(this)}
-                  BackdropComponent={Backdrop}
-                  BackdropProps={{
-                    timeout: 0,
-                    invisible: true
-                  }}
-                > */}
                   <Card className="carrr">
                     {/* <button
                     className="don btn"
@@ -219,13 +205,8 @@ export class Mapp extends Component {
                       </p>
                     </CardContent>
                   </Card>
-                  {/* </Modal> */}
                 </Popup>
-                {/* <MarkerPopup
-                open={this.state.open}
-                detail={c}
-                setOpen={this.toggleHiddden1.bind(this)}
-              /> */}
+
                 {/* <Circle
                 center={[c.latitude, c.longitude]}
                 fillColor="red"
@@ -234,32 +215,10 @@ export class Mapp extends Component {
               </Marker>
             ))}
           </FeatureGroup>
-          {/* {map.map(c => (
-            <CircleMarker
-              center={[c.latitude, c.longitude]}
-              radius={15}
-              //   fill="true"
-
-              color="red"
-              fillColor="#f00"
-              fillOpacity="0.35"
-              stroke={false}
-            >
-              <Popup>
-                <span>hello</span>
-                <br />
-              </Popup>
-            </CircleMarker>
-          ))} */}
 
           <TileLayer
-            // noWrap={true}
-            // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" //alidade_smooth_dark //alidade_smooth
-            //url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            //url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreepMap</a>  '
-            // &nbsp; By: <a href="https://vivadrive.io/" targe ="_blank">VivaDrive</a>
           />
         </Map>
       </div>

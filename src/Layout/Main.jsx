@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import logo from "../Img/White.png";
 
 export class Main extends Component {
   handleClick(e) {
@@ -9,7 +10,9 @@ export class Main extends Component {
     return (
       <div className="heelo" style={{ margin: "0 auto", maxWidth: "350px" }}>
         <div className="Logo_image">
-          <h1 className="text-center text-white">Pandemic.ai</h1>
+          <h1 className="text-center text-white">
+            <img src={logo} alt="Main Logo" />
+          </h1>
         </div>
 
         <div style={{ marginTop: "30px" }}>

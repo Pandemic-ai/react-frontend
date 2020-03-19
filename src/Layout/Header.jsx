@@ -5,7 +5,8 @@ import Flight from "./FLight";
 import Filter from "./Filter";
 import Location from "./Location";
 import Help from "./Help";
-import logo from "../Img/Logo.png";
+import Alert from "./Alert";
+import logo from "../Img/White.png";
 
 export class Header extends Component {
   constructor(props) {
@@ -134,19 +135,30 @@ export class Header extends Component {
                   />
                 </a>
               </li>
-              {/* <li>
+              <li>
                 <a
                   href="# "
                   className="nav-link   text-dark"
                   style={{ marginTop: "10px" }}
                 >
-                  <i className="fa fa-warning"></i>
+                  <Alert />
                 </a>
-              </li> */}
+              </li>
             </ul>
 
             <ul className="navbar-nav mx-auto">
-              <p className="text-white">Logo</p>
+              <p className="text-white">
+                <img
+                  src={logo}
+                  alt="Header logo"
+                  style={{
+                    height: "35px",
+                    marginTop: "5px",
+                    position: "relative",
+                    right: "60%"
+                  }}
+                />
+              </p>
             </ul>
 
             <ul className="navbar-nav float-right">
