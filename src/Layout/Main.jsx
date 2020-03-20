@@ -130,6 +130,7 @@ export class Main extends Component {
               <option value="" selected hidden disabled>
                 Choose a country
               </option>
+              <option value="">All</option>
               {options1}
             </select>
 
