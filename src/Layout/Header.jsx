@@ -237,6 +237,7 @@ export class Header extends Component {
                       <option value="" selected hidden disabled>
                         Country
                       </option>
+                      <option value="">All</option>
                       {options1}
                     </select>
                   </form>
