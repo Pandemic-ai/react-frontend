@@ -81,19 +81,26 @@ class Bus extends React.Component {
             className="form-section"
             style={{ margin: "0 auto", width: "85%" }}
           >
-            <form>
+            <form onSubmit={this.props.submit}>
               <div className="row">
                 <div className="col-md-6">
                   <label htmlFor="form">Date</label>
-                  <input className="form-control" name="date_gte" type="date" />
+                  <input
+                    className="form-control"
+                    name="date_gte"
+                    onChange={this.props.change}
+                    onChange={this.props.change}
+                    type="date"
+                  />
 
                   <label htmlFor="form" style={{ marginTop: "15px" }}>
                     From
                   </label>
                   <input
                     className="form-control"
-                    name="departure"
+                    name="d_country"
                     type="text"
+                    onChange={this.props.change}
                     placeholder="Choose Place"
                   />
                 </div>
@@ -105,6 +112,7 @@ class Bus extends React.Component {
                     className="form-control"
                     name="date_lte"
                     type="date"
+                    onChange={this.props.change}
                   />
 
                   <label htmlFor="form" style={{ marginTop: "15px" }}>
@@ -112,8 +120,9 @@ class Bus extends React.Component {
                   </label>
                   <input
                     className="form-control"
-                    name="arrival"
+                    name="a_country"
                     type="text"
+                    onChange={this.props.change}
                     placeholder="Choose Place"
                   />
                 </div>

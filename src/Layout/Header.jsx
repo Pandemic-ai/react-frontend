@@ -14,9 +14,15 @@ export class Header extends Component {
 
     this.state = {
       map: [],
-      map1: []
+      map1: [],
+      date_gte: "",
+      date_lte: "",
+      a_country: "",
+      d_country: ""
     };
     this.onLogout = this.onLogout.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   async componentDidMount() {
@@ -54,6 +60,33 @@ export class Header extends Component {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault(e);
+    await fetch(
+      `https://coronaviva.herokuapp.com/api/1/transport/data/?departure_country__icontains=${this.state.d_country}&arrival_country__icontains=${this.state.a_country}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+        }
+      }
+    )
+      .then(map => map.json())
+      .then(map => {
+        this.setState({
+          map
+        });
+      });
+  }
+
+  async onChange(e) {
+    await this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   onLogout() {
@@ -137,7 +170,12 @@ export class Header extends Component {
                   href="# "
                   style={{ marginTop: "10px" }}
                 >
-                  <Bus load={this.state.map} />
+                  <Bus
+                    load={this.state.map}
+                    submit={this.handleSubmit}
+                    state={this.state}
+                    change={this.onChange}
+                  />
                 </a>
               </li>
 
@@ -147,7 +185,12 @@ export class Header extends Component {
                   href="# "
                   style={{ marginTop: "10px" }}
                 >
-                  <Flight load={this.state.map} />
+                  <Flight
+                    load={this.state.map}
+                    submit={this.handleSubmit}
+                    state={this.state}
+                    change={this.onChange}
+                  />
                 </a>
               </li>
               <li className="nav-item  ">
@@ -156,7 +199,12 @@ export class Header extends Component {
                   href="# "
                   style={{ marginTop: "10px" }}
                 >
-                  <Train load={this.state.map} />
+                  <Train
+                    load={this.state.map}
+                    submit={this.handleSubmit}
+                    state={this.state}
+                    change={this.onChange}
+                  />
                 </a>
               </li>
               <li>
