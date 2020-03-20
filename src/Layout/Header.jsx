@@ -7,7 +7,7 @@ import Location from "./Location";
 import Help from "./Help";
 import Alert from "./Alert";
 import logo from "../Img/White.png";
-
+import viva from "../Img/Logo1.png";
 export class Header extends Component {
   constructor(props) {
     super(props);
@@ -246,11 +246,21 @@ export class Header extends Component {
 
               <li>
                 <a
-                  href="# "
-                  className="nav-link   text-white font-weight-bold"
-                  style={{ marginTop: "0px" }}
+                  className="nav-link  text-white"
+                  href="https://vivadrive.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Logo
+                  By{" "}
+                  <img
+                    src={viva}
+                    alt="Header logo"
+                    style={{
+                      height: "20px",
+                      width: "100px",
+                      marginTop: "0px"
+                    }}
+                  />
                 </a>
               </li>
             </ul>

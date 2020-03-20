@@ -99,7 +99,7 @@ export class Main extends Component {
     }
 
     const options11 = [];
-    for (var i = 0; i < city.length; i++) {
+    for (i = 0; i < city.length; i++) {
       const don = city[i];
 
       options11.push(

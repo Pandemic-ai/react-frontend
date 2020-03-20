@@ -72,14 +72,12 @@ export class Mapp extends Component {
       const group = this.groupRef.current.leafletElement; //get native featureGroup instance
       mapInst.fitBounds(group.getBounds());
 
-      {
-        this.state.map.map(c =>
-          mapInst.flyTo([c.latitude, c.longitude], 8, {
-            animate: true,
-            duration: 2 // in seconds
-          })
-        );
-      }
+      this.state.map.map(c =>
+        mapInst.flyTo([c.latitude, c.longitude], 8, {
+          animate: true,
+          duration: 2 // in seconds
+        })
+      );
     } catch (err) {
       console.log(err);
     }
@@ -108,14 +106,12 @@ export class Mapp extends Component {
       const group = this.groupRef.current.leafletElement; //get native featureGroup instance
       mapInst.fitBounds(group.getBounds());
 
-      {
-        this.state.map.map(c =>
-          mapInst.flyTo([c.latitude, c.longitude], 8, {
-            animate: true,
-            duration: 2 // in seconds
-          })
-        );
-      }
+      this.state.map.map(c =>
+        mapInst.flyTo([c.latitude, c.longitude], 8, {
+          animate: true,
+          duration: 2 // in seconds
+        })
+      );
     } catch (err) {
       console.log(err);
     }

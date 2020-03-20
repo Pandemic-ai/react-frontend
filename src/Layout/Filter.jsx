@@ -43,7 +43,7 @@ class Filter extends React.Component {
   };
 
   render() {
-    const { showNav, status } = this.state;
+    const { showNav } = this.state;
     let navCoverStyle = {
       width: showNav ? "300px" : "0",
       marginLeft: showNav ? "270px" : "0"

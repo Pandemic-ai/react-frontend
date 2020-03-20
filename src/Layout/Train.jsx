@@ -44,7 +44,7 @@ class Train extends React.Component {
   };
 
   render() {
-    const { showNav, status } = this.state;
+    const { showNav } = this.state;
     let navCoverStyle = { width: showNav ? "340px" : "0" };
     let sideNavStyle = { width: showNav ? "340px" : "0" };
 
