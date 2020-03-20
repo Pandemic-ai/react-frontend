@@ -36,7 +36,7 @@ export class Main extends Component {
   async handleSubmit1(e) {
     try {
       await fetch(
-        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&location__icontains=${this.state.location}`,
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&country__icontains=${this.state.location}`,
         {
           method: "GET",
           headers: {
@@ -84,7 +84,7 @@ export class Main extends Component {
   }
 
   render() {
-    const country = [...new Set(this.state.data.map(i => i.location))];
+    const country = [...new Set(this.state.data.map(i => i.country))];
     const city = [...new Set(this.state.map.map(i => i.address))];
 
     const options1 = [];

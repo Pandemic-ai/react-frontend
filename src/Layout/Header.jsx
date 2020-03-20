@@ -95,7 +95,7 @@ export class Header extends Component {
   }
 
   render() {
-    const country = [...new Set(this.state.map1.map(i => i.location))];
+    const country = [...new Set(this.state.map1.map(i => i.country))];
 
     const options1 = [];
 

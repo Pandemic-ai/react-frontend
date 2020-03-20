@@ -52,7 +52,7 @@ export class Mapp extends Component {
     e.preventDefault();
     try {
       await fetch(
-        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&location__icontains=${this.state.location}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&country__icontains=${this.state.location}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
         {
           method: "GET",
           headers: {
@@ -86,7 +86,7 @@ export class Mapp extends Component {
   async handleSubmit1(e) {
     try {
       await fetch(
-        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&location__icontains=${this.state.location}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&country__icontains=${this.state.location}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
         {
           method: "GET",
           headers: {
@@ -133,7 +133,7 @@ export class Mapp extends Component {
   async componentDidMount() {
     try {
       await fetch(
-        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.props.location.state.address}&location__icontains=${this.props.location.state.location}`,
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.props.location.state.address}&country__icontains=${this.props.location.state.location}`,
         {
           method: "GET",
           headers: {
