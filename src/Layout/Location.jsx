@@ -60,7 +60,7 @@ class Location extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-          <i class="fa fa-map-marker"></i>
+          <i class="fa fa-map-marker fs"></i>
         </span>
         <div
           onClick={this.navCoverClick}
@@ -131,7 +131,10 @@ class Location extends React.Component {
               </div>
 
               <div className="button">
-                <button className="btn btn-apply btn-block font-weight-bolder ">
+                <button
+                  className="btn btn-apply btn-block font-weight-bolder "
+                  onClick={this.navCoverClick}
+                >
                   SEARCH
                 </button>
               </div>

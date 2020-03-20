@@ -13,32 +13,69 @@ export class Header extends Component {
     super(props);
 
     this.state = {
-      map: []
+      map: [],
+      map1: []
     };
+    this.onLogout = this.onLogout.bind(this);
   }
 
   async componentDidMount() {
     try {
-      await fetch(`https://coronaviva.herokuapp.com/api/1/transport/data/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
-        }
-      })
-        .then(map => map.json())
-        .then(map => {
-          this.setState({
-            map
-          });
-        });
+      Promise.all([
+        await fetch(`https://coronaviva.herokuapp.com/api/1/transport/data/`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+          }
+        })
+          .then(map => map.json())
+          .then(map => {
+            this.setState({
+              map
+            });
+          }),
+        await fetch(`https://coronaviva.herokuapp.com/api/1/infected/data/`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+          }
+        })
+          .then(map1 => map1.json())
+          .then(map1 => {
+            this.setState({
+              map1
+            });
+          })
+      ]);
     } catch (err) {
       console.log(err);
     }
   }
 
+  onLogout() {
+    localStorage.removeItem("Token");
+    window.location.href = "/";
+  }
+
   render() {
+    const country = [...new Set(this.state.map1.map(i => i.location))];
+
+    const options1 = [];
+
+    for (var i = 0; i < country.length; i++) {
+      const don = country[i];
+
+      options1.push(
+        <option value={don} key={don}>
+          {don}
+        </option>
+      );
+    }
+
     return (
       <div className="container1">
         <nav className="navbar navbar-expand-lg navbar-dark  fixed top-header bg-dark">
@@ -147,18 +184,26 @@ export class Header extends Component {
             </ul>
 
             <ul className="navbar-nav mx-auto">
-              <p className="text-white">
+              <a
+                className="nav-link  text-dark"
+                href="# "
+                onClick={this.onLogout}
+                style={{
+                  color: "rgb(183, 28, 28, 0.8)",
+                  marginRight: "0px"
+                }}
+              >
                 <img
                   src={logo}
                   alt="Header logo"
                   style={{
                     height: "35px",
-                    marginTop: "5px",
+                    marginTop: "0px",
                     position: "relative",
                     right: "60%"
                   }}
                 />
-              </p>
+              </a>
             </ul>
 
             <ul className="navbar-nav float-right">
@@ -178,22 +223,23 @@ export class Header extends Component {
                   className="nav-link   text-white font-weight-bold"
                   style={{ marginTop: "0px" }}
                 >
-                  <select
-                    name="country"
-                    className="form-control minimal"
-                    style={{
-                      width: "120px",
-                      marginTop: "-12px",
-                      borderRadius: "4px"
-                    }}
-                  >
-                    <option value="" selected hidden disabled>
-                      Country
-                    </option>
-                    <option>Poland</option>
-                    <option>India</option>
-                    <option>French</option>
-                  </select>
+                  <form onSubmit={this.props.submit1}>
+                    <select
+                      name="location"
+                      className="form-control minimal"
+                      onChange={this.props.load1}
+                      style={{
+                        width: "120px",
+                        marginTop: "-12px",
+                        borderRadius: "4px"
+                      }}
+                    >
+                      <option value="" selected hidden disabled>
+                        Country
+                      </option>
+                      {options1}
+                    </select>
+                  </form>
                 </a>
               </li>
 

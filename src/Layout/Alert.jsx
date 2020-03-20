@@ -53,7 +53,7 @@ class Alert extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-          <i class="fa fa-warning"></i>
+          <i class="fa fa-warning fs"></i>
         </span>
         <div
           onClick={this.navCoverClick}

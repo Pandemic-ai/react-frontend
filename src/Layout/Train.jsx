@@ -62,7 +62,7 @@ class Train extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-          <i className="fa fa-train"></i>
+          <i className="fa fa-train fs"></i>
         </span>
         <div
           onClick={this.navCoverClick}
@@ -132,32 +132,39 @@ class Train extends React.Component {
           <div className="flight-box" style={{ marginTop: "20px" }}>
             {train.map(c => (
               <div
-                className="text-left "
+                className="text-left row"
                 style={{
                   marginBottom: "15px",
-
-                  margin: "0 auto",
-                  width: "85%"
+                  width: "100%"
                 }}
               >
-                <h5 className="font-weight-bolder">
-                  {c.company_name} {c.transport_number} - {c.departure_country}{" "}
-                  ({c.departure_place}) To {c.arrival_country} (
-                  {c.arrival_place})
-                </h5>
-                <h6 style={{ marginTop: "7px" }}>
-                  <strong>
-                    {weekday[new Date(c.date).getDay()]} ,
-                    {moment(c.datetime).format("DD-MM-YYYY")}
-                  </strong>
-                </h6>
-                <h6 style={{ marginTop: "-3px" }}>
-                  {c.departure_time} {c.departure_time > "12" ? "PM" : "AM"}{" "}
-                  {" To  "} {c.arrival_time}{" "}
-                  {c.arrival_time > "12" ? "PM" : "AM"}
-                </h6>
+                <div className="col-sm-2">
+                  {" "}
+                  <i className="fa fa-train"></i>{" "}
+                </div>
 
-                <hr style={{ borderWidth: "2px", borderColor: "yellow" }}></hr>
+                <div className="col-sm-10">
+                  <h5 className="font-weight-bolder">
+                    {c.company_name} {c.transport_number} -{" "}
+                    {c.departure_country} ({c.departure_place}) To{" "}
+                    {c.arrival_country} ({c.arrival_place})
+                  </h5>
+                  <h6 style={{ marginTop: "7px" }}>
+                    <strong>
+                      {weekday[new Date(c.date).getDay()]} ,
+                      {moment(c.datetime).format("DD-MM-YYYY")}
+                    </strong>
+                  </h6>
+                  <h6 style={{ marginTop: "-3px" }}>
+                    {c.departure_time} {c.departure_time > "12" ? "PM" : "AM"}{" "}
+                    {" To  "} {c.arrival_time}{" "}
+                    {c.arrival_time > "12" ? "PM" : "AM"}
+                  </h6>
+
+                  <hr
+                    style={{ borderWidth: "2px", borderColor: "yellow" }}
+                  ></hr>
+                </div>
               </div>
             ))}
           </div>

@@ -68,15 +68,64 @@ export class Mapp extends Component {
             map
           });
         });
+      let mapInst = this.mapRef.current.leafletElement;
+      const group = this.groupRef.current.leafletElement; //get native featureGroup instance
+      mapInst.fitBounds(group.getBounds());
+
+      {
+        this.state.map.map(c =>
+          mapInst.flyTo([c.latitude, c.longitude], 8, {
+            animate: true,
+            duration: 2 // in seconds
+          })
+        );
+      }
     } catch (err) {
       console.log(err);
     }
   }
 
-  handleClick() {
-    const map = this.mapRef.current.leafletElement;
-    const group = this.groupRef.current.leafletElement;
-    map.fitBounds(group.getBounds());
+  async handleSubmit1(e) {
+    try {
+      await fetch(
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.state.address}&location__icontains=${this.state.location}&date__gte=${this.state.date_gte}&date__lte=${this.state.date_lte}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+          }
+        }
+      )
+        .then(map => map.json())
+        .then(map => {
+          this.setState({
+            map
+          });
+        });
+      let mapInst = this.mapRef.current.leafletElement;
+      const group = this.groupRef.current.leafletElement; //get native featureGroup instance
+      mapInst.fitBounds(group.getBounds());
+
+      {
+        this.state.map.map(c =>
+          mapInst.flyTo([c.latitude, c.longitude], 8, {
+            animate: true,
+            duration: 2 // in seconds
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async onChange1(e) {
+    await this.setState({
+      [e.target.name]: e.target.value
+    });
+    this.handleSubmit1("");
   }
 
   async onChange(e) {
@@ -87,14 +136,17 @@ export class Mapp extends Component {
 
   async componentDidMount() {
     try {
-      await fetch(`https://coronaviva.herokuapp.com/api/1/infected/data/`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+      await fetch(
+        `https://coronaviva.herokuapp.com/api/1/infected/data/?address__icontains=${this.props.location.state.address}&location__icontains=${this.props.location.state.location}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer F9bQK456iUpJVZJLTZsMEKhhENqnGJ"
+          }
         }
-      })
+      )
         .then(map => map.json())
         .then(map => {
           this.setState({
@@ -108,6 +160,7 @@ export class Mapp extends Component {
     let mapInst = this.mapRef.current.leafletElement;
     const group = this.groupRef.current.leafletElement; //get native featureGroup instance
     mapInst.fitBounds(group.getBounds());
+
     // console.log(mapInst);
   }
 
@@ -120,12 +173,15 @@ export class Mapp extends Component {
       iconAnchor: [20, 40],
       iconSize: [40, 50]
     });
+
     return (
       <div>
         <Header
           state={this.state}
           load={this.onChange}
           submit={this.handleSubmit}
+          submit1={this.handleSubmit1.bind(this)}
+          load1={this.onChange1.bind(this)}
         />
         <Map
           center={[51.9194, 19.1451]}

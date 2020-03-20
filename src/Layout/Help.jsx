@@ -51,7 +51,7 @@ class Help extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.openNavClick} class="open-nav text-white">
-          <i className="fa fa-bars"></i>
+          <i className="fa fa-bars fs"></i>
         </span>
         <div
           onClick={this.navCoverClick}

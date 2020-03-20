@@ -10,7 +10,7 @@
   color: yellow;
   padding: 10px;
 }
-.fa:hover {
+.fs:hover {
   background-color: yellow;
   color: black;
   padding: 10px;
@@ -81,6 +81,12 @@
   font-weight: bold;
   padding: 10px;
   margin-top: 15px;
+}
+.btn-apply:hover {
+  color: white;
+}
+.btn-rest:hover {
+  color: white;
 }
 
 .btn-rest {
