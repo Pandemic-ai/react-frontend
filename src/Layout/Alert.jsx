@@ -7,8 +7,12 @@ class Alert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNav: false
+      showNav: false,
+      show: false,
+      random: 0
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   openNavClick = e => {
@@ -42,6 +46,22 @@ class Alert extends React.Component {
     }
   };
 
+  handleClick() {
+    const min = 30;
+    const max = 100;
+    const random = min + Math.random() * (max - min);
+    this.setState({
+      random,
+      show: true
+    });
+  }
+
+  onClick() {
+    this.setState({
+      show: false
+    });
+  }
+
   render() {
     const { showNav } = this.state;
     let navCoverStyle = {
@@ -71,93 +91,105 @@ class Alert extends React.Component {
             className="form-section"
             style={{ margin: "0 auto", width: "90%" }}
           >
-            <form onSubmit={this.props.sub} style={{ marginTop: "10px" }}>
-              <div className="row">
-                <div className="col-md-6">
-                  <label htmlFor="form">Date</label>
-                  <input
-                    type="date"
-                    onChange={this.props.loadd}
-                    name="date_gte"
-                    className="form-control"
-                  />
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="form">.</label>
-                  <input
-                    type="date"
-                    onChange={this.props.loadd}
-                    name="date_lte"
-                    className="form-control"
-                  />
-                </div>
-              </div>
-
-              <div className="form-group" style={{ marginTop: "15px" }}>
-                <label htmlFor="form">Add and address or place 1</label>
+            {/* <form onSubmit={this.props.sub} style={{ marginTop: "10px" }}> */}
+            <div className="row">
+              <div className="col-md-6">
+                <label htmlFor="form">Date</label>
                 <input
-                  type="text"
+                  type="date"
                   onChange={this.props.loadd}
-                  name="place1"
+                  name="date_gte"
                   className="form-control"
-                  placeholder="Address or placename"
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="form">Add and address or place 2</label>
+              <div className="col-md-6">
+                <label htmlFor="form">.</label>
                 <input
-                  type="text"
+                  type="date"
                   onChange={this.props.loadd}
-                  name="place2"
+                  name="date_lte"
                   className="form-control"
-                  placeholder="Address or placename"
                 />
               </div>
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="form">Add and address or place 2</label>
-                <input
-                  type="text"
-                  onChange={this.props.loadd}
-                  name="place3"
-                  className="form-control"
-                  placeholder="Address or placename"
-                />
-              </div>
+            <div className="form-group" style={{ marginTop: "15px" }}>
+              <label htmlFor="form">Add and address or place 1</label>
+              <input
+                type="text"
+                onChange={this.props.loadd}
+                name="place1"
+                className="form-control"
+                placeholder="Address or placename"
+              />
+            </div>
 
-              <div className="row">
-                <div className="col-md-6">
-                  <button className="btn btn-apply btn-block">APPLY</button>
-                </div>
-                <div className="col-md-6">
-                  <button className="btn btn-rest btn-block">RESET</button>
-                </div>
+            <div className="form-group">
+              <label htmlFor="form">Add and address or place 2</label>
+              <input
+                type="text"
+                onChange={this.props.loadd}
+                name="place2"
+                className="form-control"
+                placeholder="Address or placename"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="form">Add and address or place 2</label>
+              <input
+                type="text"
+                onChange={this.props.loadd}
+                name="place3"
+                className="form-control"
+                placeholder="Address or placename"
+              />
+            </div>
+
+            <div className="row">
+              <div className="col-md-6">
+                <button
+                  className="btn btn-apply btn-block"
+                  onClick={this.handleClick}
+                >
+                  APPLY
+                </button>
               </div>
-            </form>
+              <div className="col-md-6">
+                <button
+                  className="btn btn-rest btn-block"
+                  onClick={this.onClick.bind(this)}
+                >
+                  RESET
+                </button>
+              </div>
+            </div>
+            {/* </form> */}
           </div>
 
-          <div className="flight-box" style={{ marginTop: "20px" }}>
-            <h2
-              className="text-center  h1 font-weight-bolder"
-              style={{ color: "red", fontSize: "40px" }}
-            >
-              {" "}
-              91 %
-            </h2>
-            <hr style={{ borderWidth: "2px", borderColor: "yellow" }}></hr>
-            <p
-              className="font-weight-bolder h6"
-              style={{ color: "yellow", marginTop: "-5px" }}
-            >
-              Recommendation
-            </p>
-            <p style={{ marginTop: "-5px" }}>
-              Stay home for the next two weeks, avoid any contact with other
-              people.
-            </p>
-          </div>
+          {this.state.show && (
+            <div className="flight-box" style={{ marginTop: "20px" }}>
+              <h2
+                className="text-center  h1 font-weight-bolder"
+                style={{ color: "red", fontSize: "40px" }}
+              >
+                {" "}
+                {this.state.random.toFixed(1)} %
+              </h2>
+              <hr style={{ borderWidth: "2px", borderColor: "yellow" }}></hr>
+              <p
+                className="font-weight-bolder h6"
+                style={{ color: "yellow", marginTop: "-5px" }}
+              >
+                Recommendation
+              </p>
+              <p style={{ marginTop: "-5px" }}>
+                Stay home for the next two weeks, avoid any contact with other
+                people.
+              </p>
+            </div>
+          )}
         </div>
       </React.Fragment>
     );

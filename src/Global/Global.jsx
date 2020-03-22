@@ -272,7 +272,7 @@ class Global extends Component {
                         // radius={10}
                       >
                         <Popup autoPan={false}>
-                          <div className="carrr">
+                          <div className="carrr1">
                             <h3> Confirmed Cases </h3>
                             <div>
                               <h5 gutterBottom variant="h5" component="h3">
