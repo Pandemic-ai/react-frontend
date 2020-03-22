@@ -88,7 +88,6 @@ class Train extends React.Component {
                     className="form-control"
                     name="date_gte"
                     onChange={this.props.change}
-                    onChange={this.props.change}
                     type="date"
                   />
 

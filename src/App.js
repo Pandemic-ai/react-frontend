@@ -4,6 +4,7 @@ import { Redirect } from "react-router";
 import Mapp from "./Map/Map";
 import Global from "./Global/Global";
 import Main from "./Layout/Main";
+import GlobalData from "./Global/GlobalData";
 // import Header from "./Layout/Header";
 import "./App.css";
 
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/" component={Main} />
             <PrivateRoute path="/mapview/" component={Mapp} />
             <PrivateRoute path="/global/" component={Global} />
+            <PrivateRoute path="/globaldata/" component={GlobalData} />
           </Switch>
         </BrowserRouter>
       </Suspense>

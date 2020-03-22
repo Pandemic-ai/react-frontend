@@ -113,6 +113,13 @@ input[type="text"]:hover {
   color: yellow;
 }
 
+.side-nav .close-nav1 {
+  position: absolute;
+  top: 0rem;
+  right: 1rem;
+  font-size: 2.2rem;
+  color: yellow;
+}
 .side-nav h1 {
   color: yellow;
 

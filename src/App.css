@@ -202,3 +202,123 @@ select option {
   background: yellow;
   cursor: pointer;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 100vh;
+  overflow: scroll;
+  /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 25%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+/* .left,
+.right {
+  width: 25%;
+} */
+
+.middle {
+  width: 75%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.box-crona11 h3 {
+  color: white;
+}
+
+.box-crona11 h2 {
+  color: white;
+}
+.hello {
+  padding: 20px;
+}
+
+.carrr {
+  background-color: black;
+  color: white;
+  padding-left: 30px;
+  padding-top: 20px;
+  max-width: 300px;
+  border-radius: 7px;
+}
+.main_list {
+  color: red;
+}
+.recover_list {
+  color: green;
+}
+.active_list {
+  color: rgb(255, 153, 0);
+}
+.middlee {
+  height: 100vh;
+  background-color: rgb(61, 60, 60);
+  overflow: scroll;
+}
+
+.middlee1 {
+  height: 100vh;
+  overflow: scroll;
+}
+.middleed {
+  height: 70vh;
+  background-color: rgb(61, 60, 60);
+  overflow: scroll;
+}
+
+.confirmm {
+  padding: 8px;
+  background-color: black;
+  border-radius: 8px;
+  display: fixed;
+  overflow: scroll;
+}
+.fass {
+  border: 0;
+  outline: 0;
+}
+.fass:hover {
+  border: 0;
+  outline: 0;
+}
+
+.caaar {
+  display: block;
+  /* margin-top: -30px; */
+  overflow-y: scroll;
+}
+
+.caaar thead tr th {
+  position: sticky;
+  top: 0;
+  z-index: -100px;
+}
+
+.caaar tfoot tr th {
+  position: sticky;
+  top: 0;
+}
+.male {
+  /* -webkit-box-shadow: 6px 30px 30px 9px rgba(231, 227, 227, 0.3);
+  -moz-box-shadow: 6px 30px 30px 9px rgba(231, 227, 227, 0.3);
+  box-shadow: 6px 30px 30px 9px rgba(231, 227, 227, 0.3); */
+  padding: 10px;
+  background-color: rgb(41, 40, 40);
+}
