@@ -8,6 +8,7 @@ import Help from "./Help";
 import Alert from "./Alert";
 import logo from "../Img/White.png";
 import viva from "../Img/Logo1.png";
+import Voltu from "./Volunteer";
 export class Header extends Component {
   constructor(props) {
     super(props);
@@ -229,6 +230,26 @@ export class Header extends Component {
                   <Alert />
                 </a>
               </li>
+
+              <li>
+                <a
+                  href="# "
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "10px" }}
+                >
+                  <Voltu />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/global/"
+                  className="nav-link   text-dark"
+                  style={{ marginTop: "5px" }}
+                >
+                  <i className="fa fa fa-globe"></i>
+                </a>
+              </li>
             </ul>
 
             <ul className="navbar-nav mx-auto">
@@ -287,7 +308,6 @@ export class Header extends Component {
                       </option>
                       <option value=" ">All</option>
                       {options1}
-                      <option value="Germany">Germnay</option>
                     </select>
                   </form>
                 </a>
@@ -301,7 +321,7 @@ export class Header extends Component {
                   rel="noopener noreferrer"
                 >
                   By{" "}
-                  <img
+                  {/* <img
                     src={viva}
                     alt="Header logo"
                     style={{
@@ -309,7 +329,7 @@ export class Header extends Component {
                       width: "100px",
                       marginTop: "0px"
                     }}
-                  />
+                  /> */}
                 </a>
               </li>
             </ul>
